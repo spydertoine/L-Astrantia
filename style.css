@@ -1,0 +1,733 @@
+/* =========================================
+   1. VARIABLES & REGLAGES DE BASE
+   ========================================= */
+:root {
+    --bg-color: #F9F6F0;       /* Beige lin texturé */
+    --text-color: #4A3F35;     /* Brun taupe très foncé */
+    --primary: #C17767;        /* Terracotta chaleureux */
+    --primary-hover: #A05B4D;  /* Terracotta sombre */
+    --secondary: #828C74;      /* Vert sauge séché */
+    --font-title: 'Playfair Display', Georgia, serif;
+    --font-body: 'Lato', Arial, sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px; /* Empêche le menu de cacher le haut des sections */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-body);
+}
+
+h1, h2, h3 {
+    font-family: var(--font-title);
+    font-weight: 700;
+}
+
+/* =========================================
+   2. HEADER & NAVIGATION
+   ========================================= */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background-color: var(--bg-color);
+    border-bottom: 1px solid rgba(74, 63, 53, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+header .logo h1 {
+    font-size: 26px;
+    color: var(--primary);
+    font-style: italic;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 16px;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover, nav ul li a.active {
+    color: var(--primary);
+}
+
+.cart-icon {
+    font-weight: bold;
+    cursor: pointer;
+    color: var(--secondary);
+    transition: color 0.3s;
+}
+
+.cart-icon:hover {
+    color: var(--primary);
+}
+
+/* =========================================
+   3. HERO SECTION (ACCUEIL)
+   ========================================= */
+.hero {
+    height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: linear-gradient(rgba(249, 246, 240, 0.85), rgba(249, 246, 240, 0.85)), url('fleurs-bg.jpg') center/cover;
+    padding: 0 20px;
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hero-content h2 {
+    font-size: 54px;
+    color: var(--primary);
+    margin-bottom: 20px;
+    animation: fadeInUp 1s ease-out forwards;
+    opacity: 0;
+    animation-delay: 0.3s;
+}
+
+.hero-content p {
+    font-size: 20px;
+    margin-bottom: 40px;
+    color: var(--text-color);
+    font-weight: 300;
+    animation: fadeInUp 1s ease-out forwards;
+    opacity: 0;
+    animation-delay: 0.6s;
+}
+
+/* --- Boutons d'Action --- */
+.cta-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    animation: fadeInUp 1s ease-out forwards;
+    opacity: 0;
+    animation-delay: 0.9s;
+}
+
+button, .btn-primary, .btn-secondary {
+    display: inline-block;
+    text-decoration: none;
+    text-align: center;
+    padding: 14px 32px;
+    font-size: 16px;
+    font-family: var(--font-body);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    border: none;
+    border-radius: 0;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--primary);
+    border: 1px solid var(--primary);
+}
+
+.btn-secondary:hover {
+    background-color: var(--primary);
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* =========================================
+   4. ANIMATIONS & SVG
+   ========================================= */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+@keyframes drawLeaf {
+    to { stroke-dashoffset: 0; }
+}
+
+.bouquet-svg {
+    width: 90px;
+    height: 108px;
+    color: var(--primary);
+    margin-bottom: 25px;
+    animation: float 5s ease-in-out infinite, fadeInUp 1.2s ease-out forwards;
+    opacity: 0;
+}
+
+.stem-path {
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+    animation: drawLeaf 1.5s ease-out forwards;
+    animation-delay: 0.2s;
+}
+
+.flower-path {
+    stroke-dasharray: 150;
+    stroke-dashoffset: 150;
+    animation: drawLeaf 2s ease-out forwards;
+    animation-delay: 0.5s;
+}
+
+.leaf-path {
+    stroke-dasharray: 150;
+    stroke-dashoffset: 150;
+    animation: drawLeaf 2s ease-out forwards;
+    animation-delay: 0.8s;
+}
+
+.sparkle {
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out forwards;
+    animation-delay: 1.5s;
+}
+
+/* Animations au défilement (Scroll Reveal) */
+.reveal-hidden {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.reveal-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* =========================================
+   5. BOUTIQUE
+   ========================================= */
+.boutique-section {
+    padding: 80px 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.section-header h2 {
+    font-size: 40px;
+    color: var(--primary);
+    margin-bottom: 10px;
+}
+
+.filters {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 50px;
+}
+
+.filter-btn {
+    padding: 8px 20px;
+    background: transparent;
+    border: 1px solid rgba(74, 63, 53, 0.2);
+    border-radius: 30px;
+    color: var(--text-color);
+    font-size: 14px;
+}
+
+.filter-btn:hover, .filter-btn.active {
+    background-color: var(--secondary);
+    color: white;
+    border-color: var(--secondary);
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 40px;
+}
+
+.product-card {
+    cursor: pointer;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.product-image-container {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+
+/* Hauteur fixe pour que la grille soit toujours parfaite */
+.image-placeholder {
+    width: 100%;
+    height: 350px; 
+    background-color: #E8E3DB; 
+    transition: transform 0.6s ease;
+    border-radius: 8px;
+    object-fit: cover; 
+}
+
+.product-card:hover .image-placeholder {
+    transform: scale(1.05);
+}
+
+.add-to-cart-btn {
+    position: absolute;
+    bottom: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    background-color: rgba(255, 255, 255, 0.95);
+    color: var(--primary);
+    padding: 12px 0;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 4px;
+    opacity: 0;
+    transition: all 0.4s ease;
+}
+
+.product-card:hover .add-to-cart-btn {
+    bottom: 15px;
+    opacity: 1;
+}
+
+.add-to-cart-btn:hover {
+    background-color: var(--primary);
+    color: white;
+}
+
+.product-info {
+    text-align: center;
+}
+
+.product-info h3 {
+    font-size: 20px;
+    margin-bottom: 5px;
+    font-weight: 400;
+}
+
+.price {
+    font-family: var(--font-body);
+    font-weight: bold;
+    color: var(--secondary);
+    font-size: 16px;
+}
+
+/* =========================================
+   6. CREATION SUR-MESURE
+   ========================================= */
+.custom-section {
+    padding: 80px 50px;
+    background-color: #ffffff;
+}
+
+.configurator-container {
+    display: flex;
+    gap: 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.config-steps {
+    flex: 2;
+}
+
+.step {
+    display: none;
+    animation: fadeInUp 0.5s ease-out;
+}
+
+.step.active {
+    display: block;
+}
+
+.step h3 {
+    margin-bottom: 20px;
+    color: var(--primary);
+    font-size: 24px;
+}
+
+.options-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.option-card {
+    border: 2px solid rgba(74, 63, 53, 0.1);
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.option-card:hover {
+    border-color: var(--secondary);
+    transform: translateY(-2px);
+}
+
+.option-card.selected {
+    border-color: var(--primary);
+    background-color: rgba(193, 119, 103, 0.05);
+}
+
+.palette {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.palette span {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    display: inline-block;
+    border: 1px solid #ddd;
+}
+
+.step-navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+}
+
+.config-summary {
+    flex: 1;
+    background-color: var(--bg-color);
+    padding: 30px;
+    border-radius: 8px;
+    height: fit-content;
+    position: sticky;
+    top: 100px;
+}
+
+.config-summary h3 {
+    margin-bottom: 20px;
+    font-size: 22px;
+}
+
+.summary-list {
+    list-style: none;
+    margin-bottom: 30px;
+}
+
+.summary-list li {
+    margin-bottom: 15px;
+    font-size: 16px;
+    color: var(--text-color);
+}
+
+.total-price {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--primary);
+    margin-bottom: 20px;
+    border-top: 1px solid rgba(0,0,0,0.1);
+    padding-top: 20px;
+}
+
+#add-custom-cart {
+    width: 100%;
+}
+
+/* =========================================
+   7. FOOTER
+   ========================================= */
+footer {
+    background-color: var(--bg-color);
+    border-top: 1px solid rgba(74, 63, 53, 0.1);
+    padding: 60px 20px 30px;
+    text-align: center;
+    margin-top: 60px;
+}
+
+.footer-content h3 {
+    font-size: 28px;
+    color: var(--primary);
+    font-style: italic;
+    margin-bottom: 10px;
+}
+
+.footer-content p {
+    font-size: 16px;
+    color: var(--text-color);
+    font-weight: 300;
+    margin-bottom: 25px;
+}
+
+.contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-link {
+    text-decoration: none;
+    color: var(--secondary);
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.footer-link:hover {
+    color: var(--primary);
+    transform: translateY(-2px);
+}
+
+.copyright {
+    font-size: 12px !important;
+    opacity: 0.6;
+    margin-bottom: 0 !important;
+}
+
+/* =========================================
+   8. PANIER LATERAL (SIDEBAR)
+   ========================================= */
+.cart-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(74, 63, 53, 0.4);
+    backdrop-filter: blur(2px);
+    z-index: 999;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.cart-overlay.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+.cart-sidebar {
+    position: fixed;
+    top: 0; right: -450px;
+    width: 400px;
+    max-width: 100%;
+    height: 100vh;
+    background-color: var(--bg-color);
+    box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    transition: right 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.cart-sidebar.active {
+    right: 0;
+}
+
+.cart-header {
+    padding: 25px;
+    border-bottom: 1px solid rgba(74,63,53,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cart-header h2 {
+    color: var(--primary);
+    font-size: 24px;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 30px;
+    cursor: pointer;
+    color: var(--text-color);
+    padding: 0;
+}
+
+.cart-items {
+    flex: 1;
+    overflow-y: auto;
+    padding: 25px;
+}
+
+.empty-cart-msg {
+    text-align: center;
+    color: #888;
+    font-style: italic;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(74,63,53,0.1);
+    margin-bottom: 15px;
+    animation: fadeInUp 0.3s ease-out;
+}
+
+.cart-item-info h4 {
+    font-family: var(--font-body);
+    font-size: 16px;
+    margin-bottom: 4px;
+}
+
+.cart-item-desc {
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 8px;
+    font-style: italic;
+}
+
+.cart-item-price {
+    color: var(--secondary);
+    font-weight: bold;
+}
+
+.remove-item {
+    background: none;
+    border: none;
+    color: #C17767;
+    cursor: pointer;
+    font-size: 12px;
+    text-decoration: underline;
+    padding: 0;
+}
+
+.cart-footer {
+    padding: 25px;
+    border-top: 1px solid rgba(74,63,53,0.1);
+    background: #fff;
+}
+
+.cart-total {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.checkout-btn {
+    width: 100%;
+}
+
+/* =========================================
+   9. RESPONSIVE DESIGN (Mobiles & Tablettes)
+   ========================================= */
+@media (max-width: 768px) {
+    .boutique-section, 
+    .custom-section {
+        padding: 50px 20px;
+    }
+
+    header {
+        padding: 15px 20px;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .hero {
+        height: auto;
+        padding: 80px 20px;
+    }
+
+    .hero-content h2 {
+        font-size: 36px;
+    }
+
+    .hero-content p {
+        font-size: 16px;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+        width: 100%;
+        gap: 15px;
+    }
+
+    button, .btn-primary, .btn-secondary {
+        width: 100%;
+    }
+
+    .filters {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .section-header h2 {
+        font-size: 32px;
+    }
+
+    .configurator-container {
+        flex-direction: column;
+    }
+
+    .config-summary {
+        position: static;
+        margin-top: 30px;
+        width: 100%;
+    }
+
+    .step-navigation {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    #prev-btn, #next-btn {
+        width: 100%;
+    }
+
+    footer {
+        padding: 40px 20px 20px;
+    }
+
+    .contact-links {
+        flex-direction: column;
+        gap: 20px;
+    }
+}
