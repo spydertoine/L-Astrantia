@@ -280,7 +280,7 @@ document.addEventListener("DOMContentLoaded", () => {
        4. ANIMATIONS AU DÉFILEMENT (SCROLL REVEAL)
        ========================================= */
 // On sélectionne les éléments à animer
-const elementsToReveal = document.querySelectorAll('.boutique-section, .custom-section, .product-card');
+const elementsToReveal = document.querySelectorAll('.boutique-section, .custom-section, .product-card, .reviews-section');
 
 // On leur ajoute la classe qui les cache au départ
 elementsToReveal.forEach(el => el.classList.add('reveal-hidden'));

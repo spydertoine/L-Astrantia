@@ -2,18 +2,24 @@
    1. VARIABLES & REGLAGES DE BASE
    ========================================= */
 :root {
-    --bg-color: #F9F6F0;       /* Beige lin texturé */
-    --text-color: #4A3F35;     /* Brun taupe très foncé */
-    --primary: #C17767;        /* Terracotta chaleureux */
-    --primary-hover: #A05B4D;  /* Terracotta sombre */
-    --secondary: #828C74;      /* Vert sauge séché */
+    --bg-color: #F9F6F0;
+    /* Beige lin texturé */
+    --text-color: #4A3F35;
+    /* Brun taupe très foncé */
+    --primary: #C17767;
+    /* Terracotta chaleureux */
+    --primary-hover: #A05B4D;
+    /* Terracotta sombre */
+    --secondary: #828C74;
+    /* Vert sauge séché */
     --font-title: 'Playfair Display', Georgia, serif;
     --font-body: 'Lato', Arial, sans-serif;
 }
 
 html {
     scroll-behavior: smooth;
-    scroll-padding-top: 90px; /* Empêche le menu de cacher le haut des sections */
+    scroll-padding-top: 90px;
+    /* Empêche le menu de cacher le haut des sections */
 }
 
 * {
@@ -28,7 +34,9 @@ body {
     font-family: var(--font-body);
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
     font-family: var(--font-title);
     font-weight: 700;
 }
@@ -67,7 +75,8 @@ nav ul li a {
     transition: color 0.3s;
 }
 
-nav ul li a:hover, nav ul li a.active {
+nav ul li a:hover,
+nav ul li a.active {
     color: var(--primary);
 }
 
@@ -130,7 +139,9 @@ nav ul li a:hover, nav ul li a.active {
     animation-delay: 0.9s;
 }
 
-button, .btn-primary, .btn-secondary {
+button,
+.btn-primary,
+.btn-secondary {
     display: inline-block;
     text-decoration: none;
     text-align: center;
@@ -171,18 +182,35 @@ button, .btn-primary, .btn-secondary {
    4. ANIMATIONS & SVG
    ========================================= */
 @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @keyframes float {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
-    100% { transform: translateY(0px); }
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
 }
 
 @keyframes drawLeaf {
-    to { stroke-dashoffset: 0; }
+    to {
+        stroke-dashoffset: 0;
+    }
 }
 
 .bouquet-svg {
@@ -269,21 +297,29 @@ button, .btn-primary, .btn-secondary {
     font-size: 14px;
 }
 
-.filter-btn:hover, .filter-btn.active {
+.filter-btn:hover,
+.filter-btn.active {
     background-color: var(--secondary);
     color: white;
     border-color: var(--secondary);
 }
 
+/* --- Grille de Produits --- */
 .product-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    /* Centre parfaitement les cartes restantes */
     gap: 40px;
 }
 
 .product-card {
     cursor: pointer;
     transition: opacity 0.4s ease, transform 0.4s ease;
+    flex: 0 1 320px;
+    /* Taille idéale d'une carte. Elle peut rétrécir si besoin. */
+    width: 100%;
+    /* Sécurité pour les petits téléphones */
 }
 
 .product-image-container {
@@ -296,11 +332,11 @@ button, .btn-primary, .btn-secondary {
 /* Hauteur fixe pour que la grille soit toujours parfaite */
 .image-placeholder {
     width: 100%;
-    height: 350px; 
-    background-color: #E8E3DB; 
+    height: 350px;
+    background-color: #E8E3DB;
     transition: transform 0.6s ease;
     border-radius: 8px;
-    object-fit: cover; 
+    object-fit: cover;
 }
 
 .product-card:hover .image-placeholder {
@@ -462,7 +498,7 @@ button, .btn-primary, .btn-secondary {
     font-weight: bold;
     color: var(--primary);
     margin-bottom: 20px;
-    border-top: 1px solid rgba(0,0,0,0.1);
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
     padding-top: 20px;
 }
 
@@ -528,7 +564,10 @@ footer {
    ========================================= */
 .cart-overlay {
     position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background: rgba(74, 63, 53, 0.4);
     backdrop-filter: blur(2px);
     z-index: 999;
@@ -544,12 +583,13 @@ footer {
 
 .cart-sidebar {
     position: fixed;
-    top: 0; right: -450px;
+    top: 0;
+    right: -450px;
     width: 400px;
     max-width: 100%;
     height: 100vh;
     background-color: var(--bg-color);
-    box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
     z-index: 1000;
     display: flex;
     flex-direction: column;
@@ -562,7 +602,7 @@ footer {
 
 .cart-header {
     padding: 25px;
-    border-bottom: 1px solid rgba(74,63,53,0.1);
+    border-bottom: 1px solid rgba(74, 63, 53, 0.1);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -599,7 +639,7 @@ footer {
     justify-content: space-between;
     align-items: flex-start;
     padding-bottom: 15px;
-    border-bottom: 1px solid rgba(74,63,53,0.1);
+    border-bottom: 1px solid rgba(74, 63, 53, 0.1);
     margin-bottom: 15px;
     animation: fadeInUp 0.3s ease-out;
 }
@@ -634,7 +674,7 @@ footer {
 
 .cart-footer {
     padding: 25px;
-    border-top: 1px solid rgba(74,63,53,0.1);
+    border-top: 1px solid rgba(74, 63, 53, 0.1);
     background: #fff;
 }
 
@@ -651,10 +691,72 @@ footer {
 }
 
 /* =========================================
+   10. SECTION AVIS CLIENTS
+   ========================================= */
+.reviews-section {
+    padding: 80px 50px;
+    background-color: #ffffff;
+    /* Fond blanc pour contraster avec le beige de la boutique */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.reviews-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    /* Centre les cartes sur la dernière ligne */
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.review-card {
+    flex: 0 1 350px;
+    /* Taille idéale d'une carte d'avis */
+    width: 100%;
+    /* Sécurité pour les téléphones */
+    background-color: var(--bg-color);
+    padding: 40px 30px;
+    border-radius: 8px;
+    text-align: center;
+    border: 1px solid rgba(74, 63, 53, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.review-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(74, 63, 53, 0.05);
+}
+
+.stars {
+    color: var(--primary);
+    /* Étoiles en terracotta */
+    font-size: 22px;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+}
+
+.review-text {
+    font-size: 16px;
+    font-style: italic;
+    color: var(--text-color);
+    margin-bottom: 25px;
+    line-height: 1.6;
+}
+
+.review-author {
+    font-family: var(--font-title);
+    font-size: 18px;
+    color: var(--secondary);
+    /* Auteur en vert sauge */
+}
+
+/* =========================================
    9. RESPONSIVE DESIGN (Mobiles & Tablettes)
    ========================================= */
 @media (max-width: 768px) {
-    .boutique-section, 
+
+    .boutique-section,
     .custom-section {
         padding: 50px 20px;
     }
@@ -690,7 +792,9 @@ footer {
         gap: 15px;
     }
 
-    button, .btn-primary, .btn-secondary {
+    button,
+    .btn-primary,
+    .btn-secondary {
         width: 100%;
     }
 
@@ -718,7 +822,8 @@ footer {
         gap: 15px;
     }
 
-    #prev-btn, #next-btn {
+    #prev-btn,
+    #next-btn {
         width: 100%;
     }
 
